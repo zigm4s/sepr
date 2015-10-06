@@ -1,0 +1,595 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto+Slab);
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro);
+@font-face {
+    font-family: 'journalregular';
+    src: url('./public/fonts/journal-webfont.eot');
+    src: url('./public/fonts/journal-webfont.eot?#iefix') format('embedded-opentype'),
+         url('./public/fonts/journal-webfont.woff') format('woff'),
+         url('./public/fonts/journal-webfont.ttf') format('truetype'),
+         url('./public/fonts/journal-webfont.svg#journalregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+.navbar-default .navbar-toggle {
+  border-color: #563D7C;
+}
+
+
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+  background-color: #BFDC7A;
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+	color: #777777;
+}
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+	color: #777777;
+	background-color: #BFDC7A;
+}
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+	color: #777777;
+	background-color: #BFDC7A;
+}
+
+
+/*
+// First page owl items
+*/
+
+.firstPageOwl {
+
+    position: relative;
+    padding: 5px;
+    /*width: auto;*/
+    background-color: rgba(245,245,245, .9);
+
+    border-radius: 9px;
+    margin: 5px;
+}
+
+.firstPageOwl > .owl-wrapper-outer {
+    position: inherit;
+    padding: 1px;
+    width: auto;
+    border-radius: 9px;
+}
+
+.page-header {
+    margin: 10px;
+    border-bottom-color: #282828;
+}
+
+
+
+.firstPageOwl > .owl-wrapper-outer > .owl-wrapper > .owl-item {
+padding: 1px;
+}
+
+.firstPageOwl > .owl-wrapper-outer > .owl-wrapper > .owl-item > .owl-item-description > a > img {
+    width: auto;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.firstPageOwl > .owl-wrapper-outer > .owl-wrapper > .owl-item > .owl-item-description > div.auto-description {
+
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background: #f5f5f5;
+    padding: 3px;
+    height: 90px;
+
+}
+
+/*
+Logo
+*/
+
+.logo {
+    position: absolute;
+    top: 0px;
+    width: 200px;
+/*background-image: url('../img/jvanautos_logo.png');*/
+}
+
+/*
+frontPagePrice
+*/
+.frontPagePrice {
+
+    top: 47%;
+    left: 62%;
+    position: absolute;
+    overflow: hidden;
+}
+.frontPagePrice > span {
+    float: right;
+    -webkit-transform: rotate(-20deg);
+    transform: rotate(-20deg);
+}
+
+/*               //
+// Search option //
+//               */
+
+form.vSearchForm div select {
+    width: 100% !important;
+}
+
+
+/*Thumbnail class section*/
+.thumbnail {
+    width: auto;
+    heigth: 449px;
+    padding: 0px;
+}
+
+.thumbnail .caption table{
+    word-spacing: normal;
+    border-collapse: separate;
+    border-spacing: 10px;
+}
+.thumbnail .btn{
+    width: 100%;
+    border-radius: 0px;
+}
+
+.similar-cars span p{
+  background-color: rgba(255,255,255,0.7);
+  position: absolute;
+  width: 80%;
+  text-align: center;
+  color: #000000;
+  z-index: 0;
+  background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, .5) 0%, rgba(0, 0, 0, .0001) 100%);
+  background-image:      -o-linear-gradient(left, rgba(0, 0, 0, .5) 0%, rgba(0, 0, 0, .0001) 100%);
+  background-image: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, .5)), to(rgba(0, 0, 0, .0001)));
+  background-image:         linear-gradient(to right, rgba(0, 0, 0, .5) 0%, rgba(0, 0, 0, .0001) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#80000000', endColorstr='#00000000', GradientType=1);
+  background-repeat: repeat-x;
+  border-bottom-left-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
+}
+.small-price{
+    position:relative;
+    left: -2px;
+    top: 5px;
+    margin: auto;
+}
+
+.navbar, .navbar-inverse, .navbar-fixed-top
+{
+  /*
+background: #cdeb8e;
+background: -moz-linear-gradient(top,  #cdeb8e 0%, #a5c956 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#cdeb8e), color-stop(100%,#a5c956));
+background: -webkit-linear-gradient(top,  #cdeb8e 0%,#a5c956 100%);
+background: -o-linear-gradient(top,  #cdeb8e 0%,#a5c956 100%);
+background: -ms-linear-gradient(top,  #cdeb8e 0%,#a5c956 100%);
+background: linear-gradient(to bottom,  #cdeb8e 0%,#a5c956 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cdeb8e', endColorstr='#a5c956',GradientType=0 );
+*/
+background: #ffffff;
+-webkit-box-shadow: 0px 1px 1px #ececec;
+-moz-box-shadow: 0px 1px 1px #ececec;
+border-bottom:1px solid #dddddd;
+  box-shadow:0 4px 5px -3px #ececec;
+
+/*
+background: #cfe7fa;
+background: -moz-linear-gradient(top,  #cfe7fa 0%, #6393c1 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#cfe7fa), color-stop(100%,#6393c1));
+background: -webkit-linear-gradient(top,  #cfe7fa 0%,#6393c1 100%);
+bwackground: -o-linear-gradient(top,  #cfe7fa 0%,#6393c1 100%);
+background: -ms-linear-gradient(top,  #cfe7fa 0%,#6393c1 100%);
+background: linear-gradient(to bottom,  #cfe7fa 0%,#6393c1 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cfe7fa', endColorstr='#6393c1',GradientType=0 );
+*/
+/*font-family: 'journalregular', sans-serif;*/
+font-family: 'Roboto Slab', serif;
+
+}
+
+h1{
+    font-family: 'Roboto Slab', serif;
+}
+h2{
+    font-family: 'Roboto Slab', serif;
+}
+body{
+    font-family: 'Source Sans Pro', sans-serif;
+    background-color: #dedede;
+    background-image: URL('../../public/img/main_bg.jpg');
+    background-repeat: no-repeat;
+    overflow-x: hidden;
+    background-attachment: fixed;
+    /*background-size: 100% auto;*/
+}
+
+footer {
+    position: absolute;
+    left: 0px;
+    bottm: 0px;
+    height: 30px;
+    width: 100%;
+    background: #f5f5f5;
+    opacity: .9;
+}
+
+.ribbon-wrapper {
+  width: 85px;
+  height: 88px;
+  overflow: hidden;
+  position: absolute;
+  top: -2px;
+  right: -2px;
+    z-index: 999;
+}
+
+.ribbon-wrapper.occasions
+{
+    top: 0px;
+    right: 15px;
+}
+
+.ribbon {
+  font-weight: bold;
+  font-family: Sans-Serif;
+  letter-spacing: 0.1em;
+  color: #333;
+  font-size: 15px;
+  text-align: center;
+  text-shadow: white 0px 1px 0px;
+  transform: rotate(45deg);
+  position: relative;
+  padding: 7px 0;
+  left: -5px;
+  top: 13px;
+  width: 120px;
+  box-shadow: 0px 0px 3px 2px rgba(0, 0, 0, 0.3);
+  background: -webkit-gradient(linear, left top, left bottom, from(#cbe37f), to(#BADA55));
+  color: #202709;
+
+    background-color: #BFDC7A;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#BFDC7A), to(#8EBF45));
+  background-image: -webkit-linear-gradient(top, #BFDC7A, #8EBF45);
+  background-image:    -moz-linear-gradient(top, #BFDC7A, #8EBF45);
+  background-image:     -ms-linear-gradient(top, #BFDC7A, #8EBF45);
+  background-image:      -o-linear-gradient(top, #BFDC7A, #8EBF45);
+  -webkit-box-shadow: 0px 0px 3px rgba(0,0,0,0.3);
+  -moz-box-shadow:    0px 0px 3px rgba(0,0,0,0.3);
+  box-shadow:         0px 0px 3px rgba(0,0,0,0.3);
+}
+.ribbon:before, .ribbon:after {
+  content: "";
+  /* Colour of the triangle. To flip the effect, use border-bottom. */
+  border-top: 3px solid #BADA55;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  position: absolute;
+  bottom: -3px;
+  /* +1 to compensate for the border */
+}
+.ribbon:before {
+  left: 0;
+}
+.ribbon:after {
+  right: 0;
+}
+
+
+@media (min-width: 768px) and (max-width: 979px) {
+ .ribbon {
+  font: bold 15px Sans-Serif;
+  color: #000;
+  text-align: center;
+  text-shadow: rgba(255,255,255,0.5) 0px 1px 0px;
+  -webkit-transform: rotate(45deg);
+  -moz-transform:    rotate(45deg);
+  -ms-transform:     rotate(45deg);
+  -o-transform:      rotate(45deg);
+  position: absolute;
+  padding: 7px 0;
+  right: -30px;
+  top: 15px;
+  width: 120px;
+  background-color: #BFDC7A;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#BFDC7A), to(#8EBF45));
+  background-image: -webkit-linear-gradient(top, #BFDC7A, #8EBF45);
+  background-image:    -moz-linear-gradient(top, #BFDC7A, #8EBF45);
+  background-image:     -ms-linear-gradient(top, #BFDC7A, #8EBF45);
+  background-image:      -o-linear-gradient(top, #BFDC7A, #8EBF45);
+  -webkit-box-shadow: 0px 0px 3px rgba(0,0,0,0.3);
+  -moz-box-shadow:    0px 0px 3px rgba(0,0,0,0.3);
+  box-shadow:         0px 0px 3px rgba(0,0,0,0.3);
+}
+}
+
+@media (max-width: 767px) {
+     .ribbon {
+  font: bold 15px Sans-Serif;
+  color: #000;
+  text-align: center;
+  text-shadow: rgba(255,255,255,0.5) 0px 1px 0px;
+  -webkit-transform: rotate(45deg);
+  -moz-transform:    rotate(45deg);
+  -ms-transform:     rotate(45deg);
+  -o-transform:      rotate(45deg);
+  position: absolute;
+  padding: 7px 0;
+  right: -30px;
+  top: 15px;
+  width: 120px;
+  background-color: #BFDC7A;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#BFDC7A), to(#8EBF45));
+  background-image: -webkit-linear-gradient(top, #BFDC7A, #8EBF45);
+  background-image:    -moz-linear-gradient(top, #BFDC7A, #8EBF45);
+  background-image:     -ms-linear-gradient(top, #BFDC7A, #8EBF45);
+  background-image:      -o-linear-gradient(top, #BFDC7A, #8EBF45);
+  -webkit-box-shadow: 0px 0px 3px rgba(0,0,0,0.3);
+  -moz-box-shadow:    0px 0px 3px rgba(0,0,0,0.3);
+  box-shadow:         0px 0px 3px rgba(0,0,0,0.3);
+}
+
+}
+@media (max-width: 480px) {
+   .ribbon {
+  font: bold 15px Sans-Serif;
+  color: #000;
+  text-align: center;
+  text-shadow: rgba(255,255,255,0.5) 0px 1px 0px;
+  -webkit-transform: rotate(45deg);
+  -moz-transform:    rotate(45deg);
+  -ms-transform:     rotate(45deg);
+  -o-transform:      rotate(45deg);
+  position: absolute;
+  padding: 7px 0;
+  right: -30px;
+  top: 15px;
+  width: 120px;
+  background-color: #BFDC7A;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#BFDC7A), to(#8EBF45));
+  background-image: -webkit-linear-gradient(top, #BFDC7A, #8EBF45);
+  background-image:    -moz-linear-gradient(top, #BFDC7A, #8EBF45);
+  background-image:     -ms-linear-gradient(top, #BFDC7A, #8EBF45);
+  background-image:      -o-linear-gradient(top, #BFDC7A, #8EBF45);
+  -webkit-box-shadow: 0px 0px 3px rgba(0,0,0,0.3);
+  -moz-box-shadow:    0px 0px 3px rgba(0,0,0,0.3);
+  box-shadow:         0px 0px 3px rgba(0,0,0,0.3);
+}
+    h3{
+        font-size: 1.375em;
+    }
+}
+
+.navbar-inverse .nav li a:hover, .navbar-inverse .navbar-header a:hover {
+     color: #000;
+}
+
+
+
+.car-item {
+    right: 0;
+    margin: 0 0 15px;
+}
+
+.car-item .car-link {
+    display: block;
+    position: relative;
+    margin: 0 auto;
+    max-width: 400px;
+}
+
+.car-item .car-link .caption {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    background: #6393c1;
+    -webkit-transition: all ease .5s;
+    -moz-transition: all ease .5s;
+    transition: all ease .5s;
+}
+
+.car-item .car-link .caption:hover {
+    opacity: 1;
+}
+
+.car-item .car-link .caption .caption-content {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    height: 20px;
+    margin-top: -12px;
+    text-align: center;
+    font-size: 20px;
+    color: #fff;
+}
+
+.car-item .car-link .caption .caption-content i {
+    margin-top: -12px;
+}
+/*
+body {
+  font-size: 100%;
+}
+
+body, caption, th, td, input, textarea, select, option, legend, fieldset, h1, h2, h3, h4, h5, h6 {
+  font-size-adjust: 0.5;
+}
+
+#page {
+  font-size: 1em;
+  /* equivalent to 16px */
+  /*line-height: 1.25;*/
+  /* equivalent to 20px */
+/*}*/
+
+@media (min-width: 43.75em) {
+  #page {
+    font-size: 1em;
+    /* equivalent to 16px */
+    line-height: 1.375;
+    /* equivalent to 22px */
+  }
+}
+
+h1 {
+  font-size: 2em;
+  /* 2x body copy size = 32px */
+  line-height: 1.25;
+  /* 45px / 36px */
+}
+
+@media (min-width: 43.75em) {
+  h1 {
+    font-size: 2.5em;
+    /* 2.5x body copy size = 40px */
+    line-height: 1.125;
+  }
+}
+
+@media (min-width: 56.25em) {
+  h1 {
+    font-size: 3em;
+    /* 3x body copy size = 48px */
+    line-height: 1.05;
+    /* keep to a multiple of the 20px line height and something more appropriate for display headings */
+  }
+}
+
+h2 {
+  font-size: 1.625em;
+  /* 1.625x body copy size = 26px */
+  line-height: 1.15384615;
+  /* 30px / 26px */
+}
+
+@media (min-width: 43.75em) {
+  h2 {
+    font-size: 2em;
+    /* 2x body copy size = 32px */
+    line-height: 1.25;
+  }
+}
+
+@media (min-width: 56.25em) {
+  h2 {
+    font-size: 2.25em;
+    /* 2.25x body copy size = 36px */
+    line-height: 1.25;
+  }
+}
+
+h3 {
+  font-size: 1.375em;
+  /* 1.375x body copy size = 22px */
+  line-height: 1.13636364;
+  /* 25px / 22px */
+}
+
+@media (min-width: 43.75em) {
+  h3 {
+    font-size: 1.5em;
+    /* 1.5x body copy size = 24px */
+    line-height: 1.25;
+  }
+}
+
+@media (min-width: 56.25em) {
+  h3 {
+    font-size: 1.75em;
+    /* 1.75x body copy size = 28px */
+    line-height: 1.25;
+  }
+}
+
+h4 {
+  font-size: 1.125em;
+  /* 1.125x body copy size = 18px */
+  line-height: 1.11111111;
+}
+
+@media (min-width: 43.75em) {
+  h4 {
+    line-height: 1.22222222;
+    /* (22px / 18px */
+  }
+}
+
+blockquote {
+  font-size: 1.25em;
+  /* 20px / 16px */
+  line-height: 1.25;
+  /* 25px / 20px */
+}
+
+@media (min-width: 43.75em) {
+  blockquote {
+    font-size: 1.5em;
+    /* 24px / 16px = */
+    line-height: 1.45833333;
+    /* 35px / 24px */
+  }
+}
+
+
+/*<div class="col-sm-6 car-item">
+    <a href="#pic2" class="car-link" data-toggle="modal">
+        <div class="caption">
+            <div class="caption-content">
+                <i class="fa fa-search-plus fa-3x"></i>
+            </div>
+        </div>
+        <img src="http://placehold.it/300x300" class="img-responsive" alt="">
+    </a>
+<input type="file" id="file" class="hiddenn" name="file[]" accept="image/*">
+</div>
+
+
+
+
+
+a>.img-occasions.img-hover{
+  width:100%;
+}
+.picture_box, .auto_add_pictures
+{
+    width:100%;
+}
+.previewimg
+{
+  float: left;
+  width: 200px;
+  height: auto;
+  margin: 5px;
+}
+.picture_more
+{
+    float:left;
+    position:relative;
+}
+/*
+#myCarousel {
+    -ms-transform: rotate(1deg);
+    -webkit-transform: rotate(1deg);
+    transform: rotate(1deg);
+
+    width: 90%;
+
+max-width: 900px;
+margin-top: 10%;
+    box-shadow: 0px 0px 10px;
+    border-radius: 2px;
+    padding: 10px;
+    position: center;
+}
+
+body
+{ max-width: 960px;
+    margin:10px auto;
+    padding:10px;
+    font-family: 'Droid Sans', sans-serif;
+}
+*/
