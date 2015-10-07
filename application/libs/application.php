@@ -1,5 +1,5 @@
 <?php
-include "./application/config/class.loginsys.php";
+
 class Application
 {
 

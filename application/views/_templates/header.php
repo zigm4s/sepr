@@ -1,9 +1,9 @@
 <?php 
 ob_start();
 //include "./application/config/class.loginsys.php";
-if(!isset($LS)){
-    $LS=new LoginSystem();
-}
+//if(!isset($LS)){
+//    $LS=new LoginSystem();
+//}
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -87,30 +87,31 @@ background-image: linear-gradient(to bottom, #cbe37f, #BADA55);">
                         <a href="<?php echo URL; ?>home/contact">Contact</a>
                     </li>
 
-                    <?php if(!$LS->isLogged())
-                    {
-                    echo "
-                    <li>
-                        <a href='". URL . "home/login'>Login</a>
-                    </li>";
-                    }
-                    else{
-                        ?>
-
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="menu1">Manage<span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                                <li role="presentation" class="dropdown-header">Management options</li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo URL;?>occasions/add">Add a vehicle</a></li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo URL;?>offers">Manage Offers</a></li>
-                                <li role="presentation" class="divider"></li>
-                                <li role="presentation" class="dropdown-header">End session</li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo URL;?>home/logout">Log out</a></li>
-                            </ul>
-                        </li>
-  <?php
-                    }
-                    ?>
+<!--                    --><?php //
+//                    if(!$LS->isLogged())
+//                    {
+//                    echo "
+//                    <li>
+//                        <a href='". URL . "home/login'>Login</a>
+//                    </li>";
+//                    }
+//                    else{
+//                        ?>
+<!---->
+<!--                        <li class="dropdown">-->
+<!--                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="menu1">Manage<span class="caret"></span></a>-->
+<!--                            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">-->
+<!--                                <li role="presentation" class="dropdown-header">Management options</li>-->
+<!--                                <li role="presentation"><a role="menuitem" tabindex="-1" href="--><?php //echo URL;?><!--occasions/add">Add a vehicle</a></li>-->
+<!--                                <li role="presentation"><a role="menuitem" tabindex="-1" href="--><?php //echo URL;?><!--offers">Manage Offers</a></li>-->
+<!--                                <li role="presentation" class="divider"></li>-->
+<!--                                <li role="presentation" class="dropdown-header">End session</li>-->
+<!--                                <li role="presentation"><a role="menuitem" tabindex="-1" href="--><?php //echo URL;?><!--home/logout">Log out</a></li>-->
+<!--                            </ul>-->
+<!--                        </li>-->
+<!--  --><?php
+//                    }
+//                    ?>
 
 
                 </ul>

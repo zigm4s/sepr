@@ -6,14 +6,23 @@ class UserModel
       "keys" => array(
           "cookie" => "asf#@$!12^%%#%##ASfasfsad",
           "salt" => "s3c()rePr0gr4m!nG"
-      )  ,
+      ),
+        "features" => array(
+            "remember_me" => true,
+        ),
+        "cookies" => array(
+            "expire" => "+30 days",
+            "path" => "/",
+            "domain" => "local.dev",
+        )
+
     );
 
     private $db;
     private $isConnection = false;
     public $loggedIn = false;
     public $user = false;
-    private $remember_cookie;
+    private $remember_cookie, $cookie, $session;
 
     function __construct($db)
     {
@@ -22,6 +31,38 @@ class UserModel
         try{
             $this->isConnection = true;
             $this->db = $db;
+
+            $this->cookie = isset($_COOKIE['sepr_login']) ? $_COOKIE['sepr_login'] : false;
+            $this->session = isset($_SESSION['sepr_curuser']) ? $_SESSION['sepr_curuser'] : false;
+            $this->remember_cookie = isset($_COOKIE['sepr_rememberMe']) ? $_COOKIE['sepr_rememberMe'] : false;
+
+            $encUserID = hash("sha256", $this->config['keys']['cookie'] . $this->session . $this->config['keys']['cookie']);
+            if($this->cookie == $encUserID){
+                $this->loggedIn = true;
+            }else{
+                $this->loggedIn = false;
+            }
+
+            /**
+             * If there is a Remember Me Cookie and the user is not logged in,
+             * then log in the user with the ID in the remember cookie, if it
+             * matches with the decrypted value in `logSyslogin` cookie
+             */
+            if($this->config['features']['remember_me'] === true && $this->remember_cookie !== false && $this->loggedIn === false){
+                $encUserID = hash("sha256", $this->config['keys']['cookie']. $this->remember_cookie . $this->config['keys']['cookie']);
+                if($this->cookie == $encUserID){
+                    $this->loggedIn = true;
+                }else{
+                    $this->loggedIn = false;
+                }
+
+                if($this->loggedIn === true){
+                    $_SESSION['sepr_curuser'] = $this->remember_cookie;
+                    $this->session = $this->remember_cookie;
+                }
+            }
+
+            $this->user = $this->session;
 
         }catch (\PDOException $e){
             exit("Exception initiation your database");
@@ -33,17 +74,20 @@ class UserModel
         if($this->isConnection == true) {
             $query = "SELECT username, password, password_salt FROM users WHERE username=:username";
             $sql = $this->db->prepare($query);
-            $sql->bindValue(":username", $username);
-            $sql->execute();
+//            $sql->bindValue(":username", $username);
+            $sql->execute(array(":username" => $username));
 
             if ($sql->rowCount() == 0) {
+                print_r('here');
+
                 return false;
             } else {
+
                 $rows = $sql->fetch(PDO::FETCH_ASSOC);
                 $user_name = $rows['username'];
                 $user_pass = $rows['password'];
                 $user_salt = $rows['password_salt'];
-                $saltedPass = hash('sha256', $password . self::$config['keys']['salt'] . $user_salt);
+                $saltedPass = hash('sha256', $password . $this->config['keys']['salt'] . $user_salt);
 
             }
 
@@ -51,19 +95,46 @@ class UserModel
                 if ($cookies === true) {
 
                     $_SESSION['sepr_curuser'] = $user_name;
-                    setcookie("sepr_login", hash("sha256", self::$config['keys']['cookie'] . $user_name . self::$config['keys']['cookie']), strtotime(self::$config['cookies']['expire']), self::$config['cookies']['path'], self::$config['cookies']['domain']);
+                    setcookie("sepr_login", hash("sha256", $this->config['keys']['cookie'] . $user_name . $this->config['keys']['cookie']), strtotime($this->config['cookies']['expire']), $this->config['cookies']['path'], $this->config['cookies']['domain']);
 
-                    if ($remember_me === true && self::$config['features']['remember_me'] === true) {
-                        setcookie("sepr_rememberMe", $user_name, strtotime(self::$config['cookies']['expire']), self::$config['cookies']['path'], self::$config['cookies']['domain']);
+                    if ($remember_me === true && $this->config['features']['remember_me'] === true) {
+                        echo "Run through!";
+                        setcookie("sepr_rememberMe", $user_name, strtotime($this->config['cookies']['expire']), $this->config['cookies']['path'], $this->config['cookies']['domain']);
                     }
                     $this->loggedIn = true;
-
+                    $_COOKIE['sepr_login'] = $this->config['keys']['cookie'] . $user_name . $this->config['keys']['cookie'];
+                    $this->cookie = $this->config['keys']['cookie'] . $user_name . $this->config['keys']['cookie'];
                     // Redirect
-                    header("Location: /");
+                    print_r($_COOKIE);
+//                    header("Location: /sepr/user/");
                 }
                 return true;
             }
+            else{
+                return false;
+            }
         }
+    }
+
+    public function logout(){
+        session_destroy();
+        setcookie("sepr_login", "", time()-3600, $this->config['cookies']['path'], $this->config['cookies']['domain']);
+        setcookie("sepr_rememberMe", "", time()-3600, $this->config['cookies']['path'], $this->config['cookies']['domain']);
+
+        /**
+         * Wait for the cookies to be removed, then redirect
+         */
+        usleep(2000);
+        $this->redirect('/sepr/');
+        return true;
+    }
+
+    /**
+     * Do a redirect
+     */
+    public function redirect($url, $status = 302){
+        header("Location: $url", true, $status);
+        exit;
     }
 
     public function register($username, $password){
@@ -81,7 +152,7 @@ class UserModel
 
     public function userExists($identification){
         $query = "SELECT username FROM users WHERE username=:login";
-        $sql = self::$dbh->prepare($query);
+        $sql = $this->db->prepare($query);
         $sql->execute(array(
             ":login" => $identification
         ));
