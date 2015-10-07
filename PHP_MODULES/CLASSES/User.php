@@ -25,7 +25,7 @@ class User
     }
 
     public function getImages(){
-        $stmt = $this->_db
+        $stmt = $this->_db;
     }
 
 //    public function

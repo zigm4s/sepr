@@ -9,7 +9,7 @@ class Application {
     protected $pdo;
 
     function __construct(){
-        $this->pdo = new PDO('mysql:dbname=sepr', 'root', 'zigmas112');
+        $this->pdo = new PDO('mysql:dbname=sepr', 'root', '');
         $this->users = new Users($this->pdo);
         $this->images = new Images($this->pdo);
     }
