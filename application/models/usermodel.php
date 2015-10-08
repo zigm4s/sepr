@@ -21,17 +21,24 @@ class UserModel
     private $db;
     private $isConnection = false;
     public $loggedIn = false;
-    public $user = false;
+    public $user = null;
     private $remember_cookie, $cookie, $session;
 
-    function __construct($db)
+    function __construct($db=null)
     {
         session_start();
 
         try{
             $this->isConnection = true;
-            $this->db = $db;
+            if($db){
+                $this->db = $db;
+            }else{
+                $options = array(PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ, PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING);
 
+                // generate a database connection, using the PDO connector
+                // @see http://net.tutsplus.com/tutorials/php/why-you-should-be-using-phps-pdo-for-database-access/
+                $this->db = new PDO(DB_TYPE . ':host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PASS, $options);
+            }
             $this->cookie = isset($_COOKIE['sepr_login']) ? $_COOKIE['sepr_login'] : false;
             $this->session = isset($_SESSION['sepr_curuser']) ? $_SESSION['sepr_curuser'] : false;
             $this->remember_cookie = isset($_COOKIE['sepr_rememberMe']) ? $_COOKIE['sepr_rememberMe'] : false;
@@ -95,18 +102,16 @@ class UserModel
                 if ($cookies === true) {
 
                     $_SESSION['sepr_curuser'] = $user_name;
-                    setcookie("sepr_login", hash("sha256", $this->config['keys']['cookie'] . $user_name . $this->config['keys']['cookie']), strtotime($this->config['cookies']['expire']), $this->config['cookies']['path'], $this->config['cookies']['domain']);
+                    setcookie("sepr_login", hash("sha256", $this->config['keys']['cookie'] . $user_name . $this->config['keys']['cookie']), strtotime($this->config['cookies']['expire']));//, $this->config['cookies']['path'], $this->config['cookies']['domain']);
 
                     if ($remember_me === true && $this->config['features']['remember_me'] === true) {
-                        echo "Run through!";
-                        setcookie("sepr_rememberMe", $user_name, strtotime($this->config['cookies']['expire']), $this->config['cookies']['path'], $this->config['cookies']['domain']);
+                        setcookie("sepr_rememberMe", $user_name, strtotime($this->config['cookies']['expire'])); //, $this->config['cookies']['path'], $this->config['cookies']['domain']);
                     }
                     $this->loggedIn = true;
                     $_COOKIE['sepr_login'] = $this->config['keys']['cookie'] . $user_name . $this->config['keys']['cookie'];
                     $this->cookie = $this->config['keys']['cookie'] . $user_name . $this->config['keys']['cookie'];
                     // Redirect
-                    print_r($_COOKIE);
-//                    header("Location: /sepr/user/");
+                    $this->redirect("/sepr/user/");
                 }
                 return true;
             }
@@ -118,8 +123,8 @@ class UserModel
 
     public function logout(){
         session_destroy();
-        setcookie("sepr_login", "", time()-3600, $this->config['cookies']['path'], $this->config['cookies']['domain']);
-        setcookie("sepr_rememberMe", "", time()-3600, $this->config['cookies']['path'], $this->config['cookies']['domain']);
+        setcookie("sepr_login", "", time()-3600, $this->config['cookies']['path']);
+        setcookie("sepr_rememberMe", "", time()-3600, $this->config['cookies']['path']);
 
         /**
          * Wait for the cookies to be removed, then redirect
@@ -139,7 +144,7 @@ class UserModel
 
     public function register($username, $password){
         if($this->userExists($username)){
-            return "exists";
+            return false;
         }else{
             $randomSalt = $this->rand_string(20);
             $saltedPassword = hash('sha256', $password. $this->config['keys']['salt'] . $randomSalt);
@@ -170,6 +175,21 @@ class UserModel
             $random_str .= $chars[rand(0, $size)];
         }
         return $random_str;
+    }
+
+    public function add_image_to_db($title, $image_name, $image_ext, $image_size, $can_comment, $owner){
+        $stmt = "INSERT INTO images (title, file_name, ext, owner, can_comment, image_size) VALUES (?,?,?,?,?,?)";
+        $status = $this->db->prepare($stmt);
+        $status->execute(array($title, $image_name, $image_ext, $owner, $can_comment, $image_size));
+        return $status;
+
+    }
+
+    public function getId(){
+        $sql = "SELECT id FROM users WHERE username=?";
+        $query = $this->db->prepare($sql);
+        $query->execute(array($this->user));
+        return $query->fetch(PDO::FETCH_COLUMN);
     }
 
     /**

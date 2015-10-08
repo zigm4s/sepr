@@ -7,3 +7,5 @@
  */
 
 print_r($images);
+phpinfo();
+echo $images[0]->title;

@@ -9,7 +9,7 @@ class Controller
      * @var null Database Connection
      */
     public $db = null;
-    public $loginSystem = null;
+    public $user = null;
 
     /**
      * Whenever a controller is created, open a database connection too. The idea behind is to have ONE connection
@@ -18,6 +18,9 @@ class Controller
     function __construct()
     {
         $this->openDatabaseConnection();
+        if(!$this->user){
+            $this->user = $this->loadModel('UserModel');
+        }
     }
 
     /**

@@ -1,9 +1,6 @@
 <?php 
 ob_start();
-//include "./application/config/class.loginsys.php";
-//if(!isset($LS)){
-//    $LS=new LoginSystem();
-//}
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -78,40 +75,39 @@ background-image: linear-gradient(to bottom, #cbe37f, #BADA55);">
             <div class="collapse navbar-collapse" id="navBar">
                 <ul style="color: #000;" class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="<?php echo URL; ?>home/about">About</a>
+                        <a href="<?php echo URL; ?>">Home</a>
                     </li>
                     <li>
-                        <a href="<?php echo URL; ?>occasions/index/1">Occasions</a>
+                        <a href="<?php echo URL; ?>home/about">About</a>
                     </li>
                     <li>
                         <a href="<?php echo URL; ?>home/contact">Contact</a>
                     </li>
 
-<!--                    --><?php //
-//                    if(!$LS->isLogged())
-//                    {
-//                    echo "
-//                    <li>
-//                        <a href='". URL . "home/login'>Login</a>
-//                    </li>";
-//                    }
-//                    else{
-//                        ?>
-<!---->
-<!--                        <li class="dropdown">-->
-<!--                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="menu1">Manage<span class="caret"></span></a>-->
-<!--                            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">-->
-<!--                                <li role="presentation" class="dropdown-header">Management options</li>-->
-<!--                                <li role="presentation"><a role="menuitem" tabindex="-1" href="--><?php //echo URL;?><!--occasions/add">Add a vehicle</a></li>-->
-<!--                                <li role="presentation"><a role="menuitem" tabindex="-1" href="--><?php //echo URL;?><!--offers">Manage Offers</a></li>-->
-<!--                                <li role="presentation" class="divider"></li>-->
-<!--                                <li role="presentation" class="dropdown-header">End session</li>-->
-<!--                                <li role="presentation"><a role="menuitem" tabindex="-1" href="--><?php //echo URL;?><!--home/logout">Log out</a></li>-->
-<!--                            </ul>-->
-<!--                        </li>-->
-<!--  --><?php
-//                    }
-//                    ?>
+                    <?php
+                    if(!$this->user->user)
+                    {
+                    echo "
+                    <li>
+                        <a href='". URL . "user/login'>Login</a>
+                    </li>";
+                    }
+                    else{
+                        ?>
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="menu1">Manage<span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                                <li role="presentation" class="dropdown-header">Management options</li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo URL;?>user/edit">Edit info</a></li>
+                                <li role="presentation" class="divider"></li>
+                                <li role="presentation" class="dropdown-header">End session</li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo URL;?>user/logout">Log out</a></li>
+                            </ul>
+                        </li>
+  <?php
+                    }
+                    ?>
 
 
                 </ul>
@@ -121,47 +117,6 @@ background-image: linear-gradient(to bottom, #cbe37f, #BADA55);">
         <!-- /.container -->
     </nav>
 
-<?php
-if($_SERVER['REQUEST_URI'] != "/jvanautos/"){
-//echo "cia turi buri breadcrumbsai";
-    }
-    else{
-        ?>
-<!-- Header Carousel -->
 
-
-<!--        <section style=" height: 100%; width:100%; background-image: url('./public/img/main_bg.jpg');">-->
-<!--            <div class="well" style="position:absolute; left: 50%; top: 50%; width: 300px; height: 100px;">asdas</div></section>-->
-
-
-
-          <?php  }
-?>
-<?php
-//breadcrumbs for later
-//echo "<ul id='crumbs'>";
-/* get array containing each directory name in the path */
-/*
-$parts = explode("/", dirname($_SERVER['REQUEST_URI']));
-echo "<li><a href='/'>Home</a></li>";
-foreach ($parts as $key => $dir) {
-switch ($dir) {
-case "about": $label = "About Us"; break;
-*/
-/* if not in the exception list above,
-use the directory name, capitalized */
-/*default: $label = ucwords($dir); break;*/
-
-//}
-/* start fresh, then add each directory back to the URL */
-/*$url = "";
-for ($i = 1; $i <= $key; $i++)
-{ $url .= $parts[$i] . "/"; }
-if ($dir != "")
-echo "<li>> <a href=$url>$label</a></li>";
-}
-echo "</ul>";
-*/
-?>
     <!-- Page Content -->
     <div class="container">
