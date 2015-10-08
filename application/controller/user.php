@@ -57,14 +57,14 @@ class User extends Controller
     }
 
     public function register(){
-        $model = $this->loadModel('UserModel');
+//        $model = $this->loadModel('UserModel');
         $register_response = null;
 
         if($_POST && isset($_POST['username']) && isset($_POST['password'])):
             $username = $_POST['username'];
             $password = $_POST['password'];
 
-            $register_response = $model->register($username, $password);
+            $register_response = $this->model->register($username, $password);
 
         endif;
 
