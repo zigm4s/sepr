@@ -28,7 +28,7 @@ class User extends Controller
         $images = $this->model->getAllImages();
 
         require 'application/views/_templates/header.php';
-        require 'application/views/user/index.php';
+        require 'application/views/user/login_gui.php';
         require 'application/views/_templates/footer.php';
     }
 
@@ -68,9 +68,9 @@ class User extends Controller
 
         endif;
 
-        require 'application/views/_templates/header.php';
+        //require 'application/views/_templates/header.php';
         require 'application/views/user/register_gui.php';
-        require 'application/views/_templates/footer.php';
+        //require 'application/views/_templates/footer.php';
     }
 
     public function upload(){
