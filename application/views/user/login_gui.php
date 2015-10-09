@@ -13,7 +13,7 @@ and open the template in the editor.
             <h1>Login</h1>
             <input type="text" value="" placeholder="Username" name="username" id="username"/>
             <input type="password" value="" placeholder="Password" name="password" id="password"/>
-            <input type="submit" value="Login" name="submit"></input>
-            <button onClick="register/">Register must redirect to register.php</button>
+            <input type="submit" value="Login" name="submit"/>
+            <a class="btn btn-success button" href="<?= URL; ?>user/register/">Register</a>
         </div>
 </form>

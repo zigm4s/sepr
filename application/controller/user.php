@@ -47,7 +47,7 @@ class User extends Controller
         //Header
         require 'application/views/_templates/header.php';
         //Container
-        require 'application/views/user/login.php';
+        require 'application/views/user/login_gui.php';
         //Footer
         require 'application/views/_templates/footer.php';
     }
@@ -69,7 +69,7 @@ class User extends Controller
         endif;
 
         require 'application/views/_templates/header.php';
-        require 'application/views/user/register.php';
+        require 'application/views/user/register_gui.php';
         require 'application/views/_templates/footer.php';
     }
 
