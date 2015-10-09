@@ -14,6 +14,6 @@ and open the template in the editor.
             <input type="text" value="" placeholder="Username" name="username" id="username"/>
             <input type="password" value="" placeholder="Password" name="password" id="password"/>
             <input type="submit" value="Login" name="submit"></input>
-            <button onClick="register/">Register must redirect to register.php</button>
+            <a href="<?=URL;?> user/register/">Register must redirect to register.php</a>
         </div>
 </form>

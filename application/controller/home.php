@@ -67,14 +67,14 @@ class Home extends Controller
     public function login()
     {
         require 'application/views/_templates/header.php';
-        require 'application/views/home/login.php';
+        require 'application/views/home/login_gui.php';
         require 'application/views/_templates/footer.php';
     }
 
     public function register()
     {
         require 'application/views/_templates/header.php';
-        require 'application/views/home/register.php';
+        require 'application/views/home/register_gui.php';
         require 'application/views/_templates/footer.php';
     }
 

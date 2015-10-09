@@ -28,7 +28,7 @@ class User extends Controller
         $images = $this->model->getAllImages();
 
         require 'application/views/_templates/header.php';
-        require 'application/views/user/index.php';
+        require 'application/views/user/login_gui.php';
         require 'application/views/_templates/footer.php';
     }
 
@@ -47,7 +47,7 @@ class User extends Controller
         //Header
         require 'application/views/_templates/header.php';
         //Container
-        require 'application/views/user/login.php';
+        require 'application/views/user/login_gui.php';
         //Footer
         require 'application/views/_templates/footer.php';
     }
@@ -56,21 +56,20 @@ class User extends Controller
         $this->model->logout();
     }
 
-    public function register(){
-        $model = $this->loadModel('UserModel');
+    public function register(){        
         $register_response = null;
 
         if($_POST && isset($_POST['username']) && isset($_POST['password'])):
             $username = $_POST['username'];
             $password = $_POST['password'];
 
-            $register_response = $model->register($username, $password);
+            $register_response = $this->model->register($username, $password);
 
         endif;
 
-        require 'application/views/_templates/header.php';
-        require 'application/views/user/register.php';
-        require 'application/views/_templates/footer.php';
+        //require 'application/views/_templates/header.php';
+        require 'application/views/user/register_gui.php';
+        //require 'application/views/_templates/footer.php';
     }
 
     public function upload(){
