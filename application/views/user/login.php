@@ -7,4 +7,5 @@
      <input type="checkbox" name="remember_me"/> Remember Me
 </label>
     <button name="act_login">Log In</button>
+        <a href="register/">Register</a>
    </form>

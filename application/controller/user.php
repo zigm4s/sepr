@@ -56,7 +56,8 @@ class User extends Controller
         $this->model->logout();
     }
 
-    public function register(){        
+    public function register(){
+//        $model = $this->loadModel('UserModel');
         $register_response = null;
 
         if($_POST && isset($_POST['username']) && isset($_POST['password'])):
