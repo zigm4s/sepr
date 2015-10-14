@@ -1,7 +1,7 @@
 
 <html>
 <head>
-<title>PhotoSpace</title>
+<title> PhotoSpace</title>
 </head>
 
 <body>
