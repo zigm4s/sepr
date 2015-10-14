@@ -26,7 +26,7 @@ define('URL', 'http://127.0.0.1/sepr/');
  * This is the place where you define your database credentials, database type etc.
  */
 define('DB_TYPE', 'mysql');
-define('DB_HOST', '127.0.0.1');
+define('DB_HOST', '192.168.225.81');
 define('DB_NAME', 'sepr');
 define('DB_USER', 'sepr');
 define('DB_PASS', 'secure');
