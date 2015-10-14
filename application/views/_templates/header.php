@@ -100,6 +100,7 @@ background-image: linear-gradient(to bottom, #cbe37f, #BADA55);">
                             <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
                                 <li role="presentation" class="dropdown-header">Management options</li>
                                 <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo URL;?>user/edit">Edit info</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo URL;?>user/upload">Upload Image</a></li>
                                 <li role="presentation" class="divider"></li>
                                 <li role="presentation" class="dropdown-header">End session</li>
                                 <li role="presentation"><a role="menuitem" tabindex="-1" href="<?php echo URL;?>user/logout">Log out</a></li>

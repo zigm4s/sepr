@@ -76,7 +76,7 @@ class User extends Controller
     public function upload(){
         if ( isset( $_POST["submit"] )) {
             $title = $_POST['title'];
-            $can_comment = $_POST['can_comment'];
+            $can_comment = isset($_POST['can_comment'])===true?1:0;
             $owner = $this->user->getId();
             $target_dir = "./public/img/uploads/";
             $random_name = $this->user->rand_string(50);
@@ -114,17 +114,23 @@ class User extends Controller
                 echo "Sorry, your file was not uploaded.";
             // if everything is ok, try to upload file
             } else {
+                try{
                 if (move_uploaded_file($_FILES["uploadfile"]["tmp_name"], $target_file)) {
-
+                        
                     $this->user->add_image_to_db($title, $random_name, $imageFileType, $_FILES["uploadfile"]["size"], $can_comment, $owner);
                     echo "The file ". basename( $_FILES["uploadfile"]["name"]). " has been uploaded.";
 
                 } else {
                     echo "Sorry, there was an error uploading your file.";
                 }
+                }
+                catch(Exception $e)
+                {
+                    
+                }
             }
         }
-
+        //unset($_POST['submit']);    
         require 'application/views/_templates/header.php';
         require 'application/views/user/upload.php';
         require 'application/views/_templates/footer.php';

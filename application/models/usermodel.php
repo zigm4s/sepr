@@ -178,9 +178,9 @@ class UserModel
     }
 
     public function add_image_to_db($title, $image_name, $image_ext, $image_size, $can_comment, $owner){
-        $stmt = "INSERT INTO images (title, file_name, ext, owner, can_comment, image_size) VALUES (?,?,?,?,?,?)";
+        $stmt = "INSERT INTO images (title, file_name, ext, owner, can_comment) VALUES (?,?,?,?,?)";
         $status = $this->db->prepare($stmt);
-        $status->execute(array($title, $image_name, $image_ext, $owner, $can_comment, $image_size));
+        $status->execute(array($title, $image_name, $image_ext, $owner, $can_comment));
         return $status;
 
     }
