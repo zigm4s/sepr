@@ -1,4 +1,5 @@
 <?php
+$GLOBALS['secure'] = FALSE;
 // load the (optional) Composer auto-loader
 if (file_exists('vendor/autoload.php')) {
     require 'vendor/autoload.php';

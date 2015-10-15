@@ -11,6 +11,7 @@
     Title: <input type="text" name="title"><br />
     File: <input type="file" name="uploadfile"><br />
     Can others comment? <input type="checkbox" name="can_comment"><br />
+    Private picture? <input type="checkbox" name="is_private"><br />
 
     <input type="submit" name="submit">
 

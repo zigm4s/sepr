@@ -177,10 +177,10 @@ class UserModel
         return $random_str;
     }
 
-    public function add_image_to_db($title, $image_name, $image_ext, $image_size, $can_comment, $owner){
-        $stmt = "INSERT INTO images (title, file_name, ext, owner, can_comment, image_size) VALUES (?,?,?,?,?,?)";
+    public function add_image_to_db($title, $image_name, $image_ext, $image_size, $can_comment, $owner, $is_private){
+        $stmt = "INSERT INTO images (title, file_name, ext, owner, can_comment, image_size, is_private) VALUES (?,?,?,?,?,?,?)";
         $status = $this->db->prepare($stmt);
-        $status->execute(array($title, $image_name, $image_ext, $owner, $can_comment, $image_size));
+        $status->execute(array($title, $image_name, $image_ext, $owner, $can_comment, $image_size, $is_private));
         return $status;
 
     }
@@ -196,10 +196,11 @@ class UserModel
      * Get all images
      */
     public function getAllImages(){
-        $sql = "SELECT images.*, users.first_name, users.last_name, users.email
+        $sql = "SELECT images.*, users.first_name, users.last_name, users.email, users.username
                 FROM images
                 LEFT JOIN users
                 ON images.owner = users.id
+                WHERE images.deleted=FALSE
                 ORDER BY date DESC";
 
         $query = $this->db->prepare($sql);
@@ -216,7 +217,7 @@ class UserModel
                 FROM images
                 LEFT JOIN users
                 ON images.owner = users.id
-                WHERE images.id=?
+                WHERE images.id=? AND images.deleted=FALSE
                 ORDER BY date DESC";
 
         $query = $this->db->prepare($sql);

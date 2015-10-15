@@ -20,15 +20,10 @@ class User extends Controller
 
     public function index($image=null)
     {
-
-
-        echo "<pre>";
-        print_r($this->model);
-        echo "</pre>";
         $images = $this->model->getAllImages();
 
         require 'application/views/_templates/header.php';
-        require 'application/views/user/login_gui.php';
+        require 'application/views/user/index.php';
         require 'application/views/_templates/footer.php';
     }
 
@@ -73,25 +68,27 @@ class User extends Controller
         require 'application/views/_templates/footer.php';
     }
 
-    public function upload(){
-        if ( isset( $_POST["submit"] )) {
+    public function upload()
+    {
+        if (isset($_POST["submit"]) /*&& $this->user->user*/) {
             $title = $_POST['title'];
-            $can_comment = $_POST['can_comment'];
+            $can_comment = isset($_POST['can_comment']) ? true : false;
+            $is_private = isset($_POST['is_private']) ? true : false;
             $owner = $this->user->getId();
             $target_dir = "./public/img/uploads/";
             $random_name = $this->user->rand_string(50);
-            $target_file = $target_dir . basename($random_name.".jpg");
+            $target_file = $target_dir . basename($random_name . ".jpg");
             $uploadOk = 1;
-            $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+            $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
             //// Check if image file is a actual image or fake image
-                $check = getimagesize($_FILES["uploadfile"]["tmp_name"]);
-                if($check !== false) {
-                    echo "File is an image - " . $check["mime"] . ".";
-                    $uploadOk = 1;
-                } else {
-                    echo "File is not an image.";
-                    $uploadOk = 0;
-                }
+            $check = getimagesize($_FILES["uploadfile"]["tmp_name"]);
+            if ($check !== false) {
+                echo "File is an image - " . $check["mime"] . ".";
+                $uploadOk = 1;
+            } else {
+                echo "File is not an image.";
+                $uploadOk = 0;
+            }
             // Check if file already exists
             if (file_exists($target_file)) {
                 echo "Sorry, file already exists.";
@@ -104,20 +101,21 @@ class User extends Controller
             }
 
             // Allow certain file formats
-            if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-                && $imageFileType != "gif" ) {
+            if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+                && $imageFileType != "gif"
+            ) {
                 echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
                 $uploadOk = 0;
             }
             // Check if $uploadOk is set to 0 by an error
             if ($uploadOk == 0) {
                 echo "Sorry, your file was not uploaded.";
-            // if everything is ok, try to upload file
+                // if everything is ok, try to upload file
             } else {
                 if (move_uploaded_file($_FILES["uploadfile"]["tmp_name"], $target_file)) {
 
-                    $this->user->add_image_to_db($title, $random_name, $imageFileType, $_FILES["uploadfile"]["size"], $can_comment, $owner);
-                    echo "The file ". basename( $_FILES["uploadfile"]["name"]). " has been uploaded.";
+                    $this->user->add_image_to_db($title, $random_name, $imageFileType, $_FILES["uploadfile"]["size"], $can_comment, $owner, $is_private);
+                    echo "The file " . basename($_FILES["uploadfile"]["name"]) . " has been uploaded.";
 
                 } else {
                     echo "Sorry, there was an error uploading your file.";
@@ -126,7 +124,12 @@ class User extends Controller
         }
 
         require 'application/views/_templates/header.php';
-        require 'application/views/user/upload.php';
+//        if ($this->user->user) {
+            require 'application/views/user/upload.php';
+//        }
+//        else{
+//            echo "no access";
+//        }
         require 'application/views/_templates/footer.php';
 
     }

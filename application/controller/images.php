@@ -23,7 +23,39 @@ class Images extends Controller
         require 'application/views/_templates/footer.php';
     }
 
-    public function imageForUser($user=null){
+    public function view($image_param){
+        $model = $this->loadModel('ImagesModel');
+
+        if(isset($_POST['submit']) && isset($_POST['comment']) && $_POST['comment']):
+            $comment = $_POST['comment'];
+            if($GLOBALS['secure']):
+                $comment = htmlspecialchars($comment);
+            endif;
+
+            $model->insertComment($image_param, $comment, $this->user->getId());
+        endif;
+
+
+
+
+        require 'application/views/_templates/header.php';
+        if(isset($image_param)){
+            $image = $model->getImage($image_param);
+            $comments = $model->getComments($image_param);
+
+            if($image->is_private && $image->username != $this->user->user){
+                echo "no permission";
+            }
+            else {
+                require 'application/views/images/view.php';
+            }
+        }
+
+        require 'application/views/_templates/footer.php';
+    }
+
+
+    public function user($user=null){
         $model = $this->loadModel('ImagesModel');
 
         if(!isset($user)){
